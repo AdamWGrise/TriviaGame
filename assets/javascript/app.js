@@ -1,9 +1,14 @@
 //////////////////////////////////
 //////// Global Variables ////////
 //////////////////////////////////
-var timer = 0;
 var questionArr = []; // This is the question library.
-var roundQuestion = [];
+var isCorrect = false;
+var qtyRight = 0;
+var qtyWrong = 0;
+var questionSelector = 0; // Variable that advances and chooses the next question from the questionArr.
+var roundQuestion = []; // The given question for the specific round.
+var timer;
+var intervalId;
 
 /////////////////////////
 //////// Objects ////////
@@ -34,32 +39,83 @@ var question2 = new questionObj(2, "How many licks does it take to get to the To
 
 // Uses the 'getQuestion' function to get the question from the library; this function will then display all of the components on the screen.
 var askQuestion = function (aqInput) {
-    var roundQuestion = getQuestion(aqInput);
+    roundQuestion = questionArr[aqInput];
     $("#roundQuestion").text(roundQuestion.questionText);
     $("#answer-1").text(roundQuestion.questionAnswer0);
     $("#answer-2").text(roundQuestion.questionAnswer1);
     $("#answer-3").text(roundQuestion.questionAnswer2);
     $("#answer-4").text(roundQuestion.questionAnswer3);
+    console.log(roundQuestion);
 };
 
-// Obtains the question from the library based on the runGame's current 'for' loop value.
-var getQuestion = function (gqInput) {
-    for (q = 0; q < questionArr.length; q++) {
-        if (questionArr[q].questionNumber == gqInput) {
-            return questionArr[q];
-        };
-    };
-};
-
-// New Game, main function.
-var runGame = function () {
-    for (i = 1; i <= questionArr.length; i++) {
-        askQuestion(i);
-        // start timer and await click answer
-        // if timer expires, trigger roundEnd, disable answers, etc.
-        // if instead the player clicks an answer, get the index of the answer and see if it matches the correctAnswer variable
-        // highlight correct answer, accredit point or wrong answer values, enable "Next" button to move to the next question.
+var roundEnd = function (isCorrect) {
+    $(".answer").prop("disabled", true);
+    if (isCorrect === false) {
+        console.log("Round End: Bad sound! Increment Wrong answer total.")
+        // Bad sound
+        // Highlight right answer in green, wrong answer in red
+        // Increment wrong answers
+    } else {
+        console.log("Round End: Good sound! Increment Right answer total.")
+        // Good sound
+        // Highlight correct answer in green
+        // Increment correct answers
     }
+    questionSelector++;
+    console.log("new question number is " + questionSelector);
+    $("#next").show();
+}
+
+var roundCheck = function() {
+    console.log("questionSelector is " + questionSelector + " of " + questionArr.length + " questions");
+    if (questionSelector >= questionArr.length) {
+        console.log("credits");
+    } else {
+        console.log("run game");
+        runGame();
+    }
+}
+
+var runTimer = function() {
+    clearInterval(intervalId);
+    intervalId = setInterval(roundTimer, 1000);
+}
+
+var roundTimer = function() {
+    timer--;
+    $("#timerDisplay").html("<h3>" + timer + "</h3>");
+    if (timer === 0) {
+        clearInterval(intervalId);
+        roundEnd(isCorrect);
+    }
+}
+
+var runGame = function () {
+    $("#next").hide();
+    $(".answer").prop("disabled", false);
+    askQuestion(questionSelector);
+    console.log("question number " + questionSelector);
+    timer = 15;
+    $("#timerDisplay").html("<h3>" + timer + "</h3>");
+    runTimer();
+    $('.answer').click(function () {
+        if ($(this).attr("value") == roundQuestion.correctAnswer) {
+            isCorrect = true;
+        } else {
+            isCorrect = false;
+        }
+        console.log("isCorrect: " + isCorrect);
+        // clearTimeout(roundTimer);
+        clearInterval(intervalId);
+        roundEnd(isCorrect);
+    });
+    // start timer and await click answer
+    // if timer expires, trigger roundEnd, disable answers, etc.
+    // if instead the player clicks an answer, get the index of the answer and see if it matches the correctAnswer variable
+    // highlight correct answer, accredit point or wrong answer values, enable "Next" button to move to the next question.
+    // Add responses to the answers
+    // Add completion screen after cycling through the questionArr.length
+    // Add timer to screen display
 };
 
 ///////////////////////////
