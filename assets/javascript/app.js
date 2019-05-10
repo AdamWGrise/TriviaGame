@@ -44,6 +44,14 @@ function questionObj(qNumber, qText, qAns0, qCom0, qAns1, qCom1, qAns2, qCom2, q
 var question1 = new questionObj(1, "What album was released by the band Faith No More in 1989?", "Angel Dust", "Angel Dust was their fourth studio album, released in 1992.", "Undertow", "This is the first studio album by the rock band Tool, released in 1993.", "California", "California is the name of several other albums, but there's only one that comes from one of Faith No More's associated acts. Mr. Bungle is an eclectic, experimental metal band led by Faith No More's frontman, Mike Patton. California is their final album, released in 1999.", "The Real Thing", "Faith No More's third studio album, with three singles: 'From Out of Nowhere,' 'Epic,' and 'Falling to Pieces.'", 3);
 
 var question2 = new questionObj(2, "How many licks does it take to get to the Tootsie Roll centre of a Tootsie Pop?", "One", "Really? One lick? What kinda freaky tongue you got?", "Ask Mr. Owl", "The second best answer! He's wise.", "*Crunch*", "This is pretty much where the sucker ends. Nobody licks it to the center! Come on, now.", "Three", "Yeah, this is what Mr. Owl *says*, but we all know he's full of it.", 2);
+
+var question3 = new questionObj(3,"A","B","C","D","E","F","G","H","I",1);
+var question4 = new questionObj(4,"A","B","C","D","E","F","G","H","I",1);
+var question5 = new questionObj(5,"A","B","C","D","E","F","G","H","I",1);
+var question6 = new questionObj(6,"A","B","C","D","E","F","G","H","I",1);
+var question7 = new questionObj(7,"A","B","C","D","E","F","G","H","I",1);
+var question8 = new questionObj(8,"A","B","C","D","E","F","G","H","I",1);
+var question9 = new questionObj(9,"A","B","C","D","E","F","G","H","I",1);
 ///////////////////////////////////////////////////////////////
 
 ///////////////////////////
@@ -115,7 +123,7 @@ var runGame = function () {
         } else {
             isCorrect = false;
             ($(this).css({"background-color":"red","color":"white"})); // Highlight the selected incorrect answer in red.
-        }
+        };
         ($("button[value=" + roundQuestion.correctAnswer + "]")).css({"background-color":"green","color":"white"}); // Highlight the correct answer in green.
         clearInterval(intervalId); // Reset the timer interval following the click.
         roundEnd(isCorrect); // Second major function, all the stuff between rounds.
@@ -164,5 +172,5 @@ $(document).ready(intro());
 // TO DO
 // Add completion screen after cycling through the questionArr.length
 // Add correct answers tracker to top right
-    // SOMETHING WRONG WITH THIS - I think the roundEnd function is getting double called or something
+    // SOMETHING WRONG WITH THIS - I think the roundEnd function is getting double called, possibly because of the way I'm resetting the timer?
 // Make LOTS more questions, figure out a way to automate, possibly get a random set each play
