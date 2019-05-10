@@ -12,7 +12,7 @@
     <!-- Local CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Pacifico" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Pacifico|Overpass" rel="stylesheet">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
@@ -22,43 +22,68 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h1>Fun Lava Pit Quiz!</h1>
-                    <h4>Answer the questions correctly and you get to not be thrown into the fiery pit of magma and death!</h4>
+                    <div class="gameHeader">
+                        <h1>Fun Furnace Challenge!</h1>
+                        <h6>Today's Theme: 90s Rock Music</h6>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
-                    <div id="roundQuestion"></div>
-                </div>
+            <div class="gameIntro">
+                <p>Welcome to the Fun Furnace Challenge Quiz! Can you get the questions right? Or will you be plummeting
+                    to a boiling lake of lava? Only your knowledge of the topic will tell!</p>
+                <p>Click "Start" below to begin!</p>
+                <button id="beginGame" onclick="beginGame()">Start!</button>
             </div>
-            <div class="row">
-                <div class="col">
-                    <div id="timerDisplay"><h3>15</h3></div>
+            <div class="gameContent">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div id="timerDisplay">
+                            <p>15</p>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div id="roundQuestion"></div>
+                    </div>
+                    <div class="col-md-2">
+                        <div id="currentScore">Score: 0 / 0</div>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <button class="answer" id="answer-1" value="0"></button><span class="response"></span>
+                <div class="row smallPad">
+                    <div class="col-3">
+                        <button class="answer" id="answer-1" value="0"></button><span class="response"></span>
+                    </div>
+                    <div class="col-9">
+                        <div class="comment" id="comment-1"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <button class="answer" id="answer-2" value="1"></button><span class="response"></span>
+                <div class="row smallPad">
+                    <div class="col-3">
+                        <button class="answer" id="answer-2" value="1"></button><span class="response"></span>
+                    </div>
+                    <div class="col-9">
+                        <div class="comment" id="comment-2"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <button class="answer" id="answer-3" value="2"></button><span class="response"></span>
+                <div class="row smallPad">
+                    <div class="col-3">
+                        <button class="answer" id="answer-3" value="2"></button><span class="response"></span>
+                    </div>
+                    <div class="col-9">
+                        <div class="comment" id="comment-3"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <button class="answer" id="answer-4" value="3"></button><span class="response"></span>
+                <div class="row smallPad">
+                    <div class="col-3">
+                        <button class="answer" id="answer-4" value="3"></button><span class="response"></span>
+                    </div>
+                    <div class="col-9">
+                        <div class="comment" id="comment-4"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <button id="next" onclick="roundCheck()">Next question! --></button>
+                <div class="row">
+                    <div class="col">
+                        <button id="next" onclick="roundCheck()">Next question! →</button>
+                    </div>
                 </div>
             </div>
         </div>
