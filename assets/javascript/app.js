@@ -117,7 +117,7 @@ var runGame = function () {
     $("#timerDisplay").text(timer); // Update timer display.
     $("#timerDisplay").attr("style","color:lightblue");
     runTimer(); // Starts the timer.
-    $('.answer').click(function () { // Answer click response.
+    $('.answer').unbind().click(function () { // Answer click response.
         if ($(this).attr("value") == roundQuestion.correctAnswer) { // Right answer?
             isCorrect = true;
         } else {
@@ -134,16 +134,14 @@ var runGame = function () {
 var roundEnd = function (isCorrect) {
     $(".answer").prop("disabled", true); // Disable the answer buttons.
     if (isCorrect === false) { // If wrong answer, bad sound and increment wrong answer total.
-        console.log("Round End: Bad sound! Increment Wrong answer total.");
         qtyWrong++;
         wrongAnswer.play();
     } else { // If right answer, good sound and increment right answer total.
-        console.log("Round End: Good sound! Increment Right answer total.")
         qtyRight++;
         rightAnswer.play();
     }
     questionsAnswered++;
-    $("#currentScore").text("Score: " + qtyRight + " / " + questionsAnswered); // Update score display
+    $("#currentScore").text("Score: " + qtyRight + " / " + questionsAnswered + " correct"); // Update score display
     questionSelector++; // Next time askQuestion is called, it'll be the next question.
     console.log("new question number is " + questionSelector);
     $("#next").show(); // Enable the "Next Question" button.
