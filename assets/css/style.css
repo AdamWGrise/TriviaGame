@@ -4,7 +4,7 @@ html {
     font-family: 'Permanent Marker', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color:white;
     font-size: 1.2rem;
-    background-color: #001;
+    background-color: #A30;
     text-shadow: 0px 0px 10px black;
     text-align:center;
 }
@@ -32,10 +32,20 @@ body {
 }
 
 .smallPad {
-    padding:15px;
+    padding:7px;
 }
 
 .gameContent {
+    margin-top: 50px;
+}
+
+.footer {
+    position:fixed;
+    bottom:10px;
+}
+
+.mainGame {
+    margin-bottom:125px;
     margin-top: 50px;
 }
 
